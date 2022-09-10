@@ -19,7 +19,7 @@ app.engine('html', async (filePath, options, callback)=>{
     const template = await fsPromise.readFile(filePath, 'utf-8')
 
     //controller
-    const rendered = template.replace('{{id}}',id)  
+    const rendered = template.replace('{{id}}',id,'{{tittle}}',tittle,'{{price}}',price,'{{thumnail}}',thumnail,)  
 
 
     return callback(null, rendered); 
@@ -27,9 +27,19 @@ app.engine('html', async (filePath, options, callback)=>{
 
 })
 
+app.set('views','/views')
+app.set('view engine','html')
 
-app.get('/', (req,res)=>{
+app.get('/api/:id', (req,res)=>{
     res.send("Main page")
+    const productos = {
+        id: req.params.id,
+        tittle: req.params.tittle,
+        price: req.params.price,
+        thumnail: req.params.thumnail
+    }
+
+    res.render('index', productos)
 })
 
 app.use('/api/', productsRouter);
