@@ -8,13 +8,15 @@
 </head>
 <body>
     <div>
-    <form >
-        <label for="fname"> tittle:</label>
-        <input type="text" id="fname" name="fname"><br><br>
-        <label for="lname"> price:</label>
-        <input type="text" id="lname" name="lname"><br><br>
-        <label for="lname"> thumnail:</label>
-        <input type="text" id="lname" name="lname"><br><br>
+    <form > 
+        <label for="fname"> id:</label>
+        <input type="int" id="id" name="id"><br><br>
+        <label for="tittle"> tittle:</label>
+        <input type="text" id="tittle" name="tittle"><br><br>
+        <label for="price"> price:</label>
+        <input type="text" id="price" name="price"><br><br>
+        <label for="thumnail"> thumnail:</label>
+        <input type="placeholder" id="thumnail" name="thumnail"><br><br>
         <input type="submit" value="Submit">
         <input type="submit" formtarget="http://localhost:8080/api/productos" value="Submit to a new window/tab">
     </form>
@@ -33,10 +35,12 @@
 
         //controller
         
-        const templateHb = Handlebars.compile(view);
+        const controller = Handlebars.compile(view);
 
-        const htmlHb = templateHb(productos);
-        
+        const htmlHb = controller(productos);
+
+
+        document.querySelector('div').innerHTML = htmlHb; 
 
 
     </script>

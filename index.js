@@ -1,15 +1,31 @@
 const express = require('express');
-
+const fs = require ('fs')
 const app = express()
 const port = 8080;
 const productsRouter = require('./products')
-
+const fsPromise = fs.promises
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static("public"))
+// app.use(express.static("public"))
+
+app.engine('html', async (filePath, options, callback)=>{
+    
+    //model
+    const {id,tittle,price,thumnail} = options;
+    //view
+    const template = await fsPromise.readFile(filePath, 'utf-8')
+
+    //controller
+    const rendered = template.replace('{{id}}',id)  
+
+
+    return callback(null, rendered); 
+
+
+})
 
 
 app.get('/', (req,res)=>{
