@@ -1,52 +1,98 @@
 const express = require('express');
 const fs = require ('fs')
+const handlebars = require('express-handlebars')
 const app = express()
 const port = 8080;
 const productsRouter = require('./products')
+
 const fsPromise = fs.promises
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// app.use(express.static("public"))
 
-app.engine('html', async (filePath, options, callback)=>{
+
+app.engine("hbs", handlebars.engine({
+    extname: 'hbs',
+    layoutsDir: __dirname + "/views",
+    defaultLayout: 'index',
     
-    //model
-    const {id,tittle,price,thumnail} = options;
-    //view
-    const template = await fsPromise.readFile(filePath, 'utf-8')
+}))
 
-    //controller
-    const rendered = template.replace('{{id}}',id,'{{tittle}}',tittle,'{{price}}',price,'{{thumnail}}',thumnail,)  
+//HandleBars
+
+app.set("views", __dirname + "/views");
+app.set("view engine", "hbs");
+
+app.get("/", (req, res) => {
+res.render("form", {
+    layout: "form",
+    title: "Página principal",
+    Precio: "Precio",
+    addProd: "Añadir Producto",
+});
+});
+
+app.get("/productos", (req, res) => {
+res.render("productos", {
+    layout: "productos",
+    title: "Productos",
+    compras: constructor.getAll().sort((a, b) => a.id - b.id),
+    noProd: "No hay productos",
+});
+});
+
+///////////////////////////////////////////////////////////////////
+
+// PUG VIEWS/////
+
+// app.set("views", __dirname + "/views");
+// app.set("view engine", "pug");
+// app.get("/", (req, res) => {
+//   res.render("form", {
+//     layout: "form",
+//     title: "Página principal",
+//     Precio: "Precio",
+//     addProd: "Añadir Producto",
+//   });
+// });
+
+// app.get("/productos", (req, res) => {
+//   res.render("productos", {
+//     layout: "productos",
+//     title: "Productos",
+//     compras: constructor.getAll().sort((a, b) => a.id - b.id),
+//     noProd: "No hay productos",
+//   });
+// });
+
+/////////////////////////////////////////////
+
+// EJS VIEWS
+
+// app.set("views", __dirname + "/views");
+// app.set("view engine", "ejs");
+// app.get("/", (req, res) => {
+//   res.render("form", {
+//     layout: "form",
+//     title: "Página principal",
+//     Precio: "Precio",
+//     addProd: "Añadir Producto",
+//   });
+// });
+
+// app.get("/productos", (req, res) => {
+//   res.render("productos", {
+//     layout: "productos",
+//     title: "Productos",
+//     compras: constructor.getAll().sort((a, b) => a.id - b.id),
+//     noProd: "No hay productos",
+//   });
+// });
 
 
-    return callback(null, rendered); 
-
-
-})
-
-app.set('views','/views')
-app.set('view engine','html')
-
-app.get('/api/:id', (req,res)=>{
-    res.send("Main page")
-    const productos = {
-        id: req.params.id,
-        tittle: req.params.tittle,
-        price: req.params.price,
-        thumnail: req.params.thumnail
-    }
-
-    res.render('index', productos)
-})
-
-app.use('/api/', productsRouter);
-
-
-
-
+app.use('/productos/', productsRouter);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 

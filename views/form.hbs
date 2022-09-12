@@ -1,0 +1,36 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<body>
+  
+
+<h1>Ingreso de productos</h1>
+<br>
+<form>
+  <div class="form-col-12">
+    <div class="col">
+      <h5>Nombre producto</h5>
+      <input style="p-5" type="text" class="form-control" placeholder="First name">
+    </div>
+    <br>
+     <h5>Precio producto</h5>
+      <input type="number" class="form-control" placeholder="precio producto">
+    </div>
+    <br>
+     <h5>url producto</h5>
+      <input type="text" class="form-control" placeholder="url imagen producto">
+    </div>
+</form>
+<button type="submit" method="POST" class="btn btn-success">{{addProd}}</button>
+<button class="btn btn-primary" onclick="event.preventDefault()
+  window.location.href='/productos'">Ir a lista de productos</button> 
+</div>
+ </body>
+
+
+
+</html>
