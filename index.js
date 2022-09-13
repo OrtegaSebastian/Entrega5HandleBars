@@ -5,7 +5,6 @@ const app = express()
 const port = 8080;
 const productsRouter = require('./products')
 
-const fsPromise = fs.promises
 
 
 app.use(express.json());
@@ -25,71 +24,16 @@ app.engine("hbs", handlebars.engine({
 app.set("views", __dirname + "/views");
 app.set("view engine", "hbs");
 
-app.get("/", (req, res) => {
-res.render("form", {
-    layout: "form",
-    title: "Página principal",
-    Precio: "Precio",
-    addProd: "Añadir Producto",
-});
-});
+app.get("/productos", async(req,res)=>{
+    const { id } = req.query;
+  try {
+    const data = await constructor.getById(parseInt(id));
 
-app.get("/productos", (req, res) => {
-res.render("productos", {
-    layout: "productos",
-    title: "Productos",
-    compras: constructor.getAll().sort((a, b) => a.id - b.id),
-    noProd: "No hay productos",
-});
-});
-
-///////////////////////////////////////////////////////////////////
-
-// PUG VIEWS/////
-
-// app.set("views", __dirname + "/views");
-// app.set("view engine", "pug");
-// app.get("/", (req, res) => {
-//   res.render("form", {
-//     layout: "form",
-//     title: "Página principal",
-//     Precio: "Precio",
-//     addProd: "Añadir Producto",
-//   });
-// });
-
-// app.get("/productos", (req, res) => {
-//   res.render("productos", {
-//     layout: "productos",
-//     title: "Productos",
-//     compras: constructor.getAll().sort((a, b) => a.id - b.id),
-//     noProd: "No hay productos",
-//   });
-// });
-
-/////////////////////////////////////////////
-
-// EJS VIEWS
-
-// app.set("views", __dirname + "/views");
-// app.set("view engine", "ejs");
-// app.get("/", (req, res) => {
-//   res.render("form", {
-//     layout: "form",
-//     title: "Página principal",
-//     Precio: "Precio",
-//     addProd: "Añadir Producto",
-//   });
-// });
-
-// app.get("/productos", (req, res) => {
-//   res.render("productos", {
-//     layout: "productos",
-//     title: "Productos",
-//     compras: constructor.getAll().sort((a, b) => a.id - b.id),
-//     noProd: "No hay productos",
-//   });
-// });
+    return res.send(data);
+  } catch (e) {
+    return res.status(404).send({ error: true, msg: e.message });
+  }
+})
 
 
 app.use('/productos/', productsRouter);
