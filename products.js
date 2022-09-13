@@ -8,7 +8,7 @@ const router = Router();
 
 const Products = [];
 //  devuelve todos los productos.
-router.get('/products', async (req, res) => {
+router.get('/productos', async (req, res) => {
   try {
     res.send(await constructor.getAll());
   } catch (err) {
@@ -18,7 +18,7 @@ router.get('/products', async (req, res) => {
 
   
 //  -> devuelve un producto según su id. 
-router.get('/products/:id', async (req, res) => {
+router.get('/productos/:id', async (req, res) => {
   try {
     const { id } = req.params;
     res.send(await constructor.getById(parseInt(id)));
@@ -28,7 +28,7 @@ router.get('/products/:id', async (req, res) => {
 });
 
 // agrega productos 
-router.post('/products', async (req, res)=>{
+router.post('/productos', async (req, res)=>{
   try {
     const {title, price, tumbnail} = req.body;
     const id = Products.length+1
@@ -46,7 +46,7 @@ router.post('/products', async (req, res)=>{
 
 
 // PUT '/api/productos/:id' -> recibe y actualiza un producto según su id. 
-router.put('/products/:id', async (req, res) => {
+router.put('/productos/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const {title, price, tumbnail} = req.body;
@@ -65,7 +65,7 @@ router.put('/products/:id', async (req, res) => {
 
 
 // DELETE '/api/productos/:id' -> elimina un producto según su id.
-router.delete('/products/:id', async (req,res)=>{
+router.delete('/productos/:id', async (req,res)=>{
   try {
     const { id } = req.params;
     res.send(await constructor.deleteById(parseInt(id)));
