@@ -1,35 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Productos Cargados</title>
-</head>
-<body>
-  <main role="main" class="container">
-      <h1 class="mt-5">Productos</h1>
-      <table class="table table-dark">
-        <thead>
-          <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Precio</th>
-            <th scope="col">url</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each productos}}
-            <tr>
-              <th scope="col">{{this.id}}</th>
-              <th scope="col">{{this.price}}</th>
-              <th scope="col">{{this.precio}}</th>
-              <th scope="col">{{this.tumbnail}}</th>
-            </tr>
+<div role="main" class="container">
+  <h1 class="mt-5">Productos</h1>
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Titulo</th>
+        <th scope="col">Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each dataArray}}
+      <tr>
+        <th scope="col">{{this.id}}</th>
+        <th scope="col">{{this.title}}</th>
+        <th scope="col">{{this.price}}</th>
 
-          {{/each}}
-        </tbody>
-      </table>
-    </main>
+      </tr>
 
-</body>
-</html>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
