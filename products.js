@@ -64,15 +64,14 @@ router.get('/productos/:id', async (req, res) => {
 });
 
 // agrega productos 
-router.post('/productos', async (req, res) => {
+router.post('/productos/hbs', async (req, res) => {
   try {
     const { title, price, tumbnail } = req.body;
     const id = Products.length + 1
     const itemToSave = {
       id,
       title,
-      price,
-      tumbnail
+      price,    
     }
     res.send(await constructor.save(itemToSave));
   } catch (err) {

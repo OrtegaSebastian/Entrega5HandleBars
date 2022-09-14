@@ -12,18 +12,21 @@
 <br>
 <form  method="POST" action="productos/hbs">
   <div class="form-col-12">
-    <div class="col">
+    <div class="col" id="title">
+      <h5>ID</h5>
+      <input style="p-5" type="text" class="form-control" placeholder="First name">
+    </div>
+    <div class="col" id="title">
       <h5>Nombre producto</h5>
       <input style="p-5" type="text" class="form-control" placeholder="First name">
     </div>
     <br>
+    <div class="col" id="price">
      <h5>Precio producto</h5>
       <input type="number" class="form-control" placeholder="precio producto">
+      </div>
     </div>
-    <br>
-     <h5>url producto</h5>
-      <input type="text" class="form-control" placeholder="url imagen producto">
-    </div>
+    <br> 
 
 <button type="submit" method="POST" action="/productos/hbs" class="btn btn-success">AGREGAR PRODUCTO</button>
 
