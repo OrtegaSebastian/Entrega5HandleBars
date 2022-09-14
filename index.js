@@ -11,8 +11,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.set("views", __dirname + "/views");
-app.set("view engine", "hbs");
+// app.set("views", __dirname + "/views");
+// app.set("view engine", "hbs");
 
 //HandleBars
 const hbs = handlebars.engine({
@@ -23,18 +23,12 @@ const hbs = handlebars.engine({
 app.engine("hbs", hbs);
 
 // configuraciones
-// app.set("views", "./views");
-// app.set("view engine", "hbs");
+app.set("views", "./views");
+app.set("view engine", "hbs");
 
-// app.engine(
-//   "hbs",
-//   handlebars({
-//     extname: ".hbs",
-//     layoutsDir: "views/layouts",
-//     defaultLayout: "index",
-//     partialsDir: __dirname + "/views/partials", // Codigo estatico como el footer y header
-//   })
-// );
+app.get("/form", (req, res) => {
+  res.render("main", { layout: "form" });  
+});
 
 
 app.use('/productos/', productsRouter);

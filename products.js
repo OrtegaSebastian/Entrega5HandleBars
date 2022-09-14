@@ -51,6 +51,8 @@ router.get("/hbs", async (req, res) => {
 
 });
 
+
+
 //  -> devuelve un producto según su id. 
 router.get('/productos/:id', async (req, res) => {
   try {

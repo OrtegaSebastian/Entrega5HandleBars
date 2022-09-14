@@ -10,7 +10,7 @@
 
 <h1>Ingreso de productos</h1>
 <br>
-<form class="addProduct" method="POST" action="/api/productos">
+<form  method="POST" action="productos/hbs">
   <div class="form-col-12">
     <div class="col">
       <h5>Nombre producto</h5>
@@ -24,11 +24,13 @@
      <h5>url producto</h5>
       <input type="text" class="form-control" placeholder="url imagen producto">
     </div>
-</form>
-<button type="submit" method="POST" class="btn btn-success">{{addProd}}</button>
+
+<button type="submit" method="POST" action="/productos/hbs" class="btn btn-success">AGREGAR PRODUCTO</button>
+
 <button class="btn btn-primary" onclick="event.preventDefault()
-  window.location.href='/productos'">Ir a lista de productos</button> 
+  window.location.href='/productos/hbs'">Ir a lista de productos</button> 
 </div>
+</form>
 </body>
 
 
