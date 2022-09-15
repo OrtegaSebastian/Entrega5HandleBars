@@ -31,7 +31,7 @@ app.get("/form", (req, res) => {
 });
 
 
-app.use('/productos/', productsRouter);
+app.use('/', productsRouter);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 

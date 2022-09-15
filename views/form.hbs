@@ -10,25 +10,25 @@
 
 <h1>Ingreso de productos</h1>
 <br>
-<form  method="POST" action="productos/hbs">
+<form  method="POST" action="/productos/hbs">
   <div class="form-col-12">
     <div class="col" id="title">
       <h5>ID</h5>
-      <input style="p-5" type="text" class="form-control" placeholder="First name">
+      <input style="p-5" name="id" type="text" class="form-control" placeholder="First name">
     </div>
     <div class="col" id="title">
       <h5>Nombre producto</h5>
-      <input style="p-5" type="text" class="form-control" placeholder="First name">
+      <input style="p-5" name="title" type="text" class="form-control" placeholder="First name">
     </div>
     <br>
     <div class="col" id="price">
      <h5>Precio producto</h5>
-      <input type="number" class="form-control" placeholder="precio producto">
+      <input type="number" name="price" class="form-control" placeholder="precio producto">
       </div>
     </div>
     <br> 
 
-<button type="submit" method="POST" action="/productos/hbs" class="btn btn-success">AGREGAR PRODUCTO</button>
+<button type="submit" class="btn btn-success">AGREGAR PRODUCTO</button>
 
 <button class="btn btn-primary" onclick="event.preventDefault()
   window.location.href='/productos/hbs'">Ir a lista de productos</button> 
